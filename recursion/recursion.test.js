@@ -1,17 +1,19 @@
 /* Write a function to do the division operation without using the built-in division*/
 
-function division(number, dividedBy){
+function division(number, dividedBy) {
+
     if (dividedBy == 0) {
-        return 0 ;
+        return 0;
     }
     else if (number == 0) {
         return 0;
     } else if (number === dividedBy) {
         return 1;
-    } else { 
-    }
-     return number/dividedBy
+    } else {
+        let newNumber = 1;
+        return (newNumber + division(number - dividedBy, dividedBy));
 
+    }
 }
 
 /* Write a function that implement Math.pow(x,n) but using recursion
@@ -20,13 +22,13 @@ pow(2,4) = 16
 */
 
 
-function pow(x,n){
-    if(n===0){
+function pow(x, n) {
+    if (n === 0) {
         return 1;
-    }else if(n!==0){
-       return x*pow(x,n-1) ;
+    } else if (n !== 0) {
+        return x * pow(x, n - 1);
     }
-    
+
 }
 
 /* The Fibonacci Series is a numeric series starting with the integers 0 and 1. In this series,
@@ -38,11 +40,11 @@ Write a function that take n as parameter and return the nth element in the Fibo
 
 Example: n = 4 ==> 3, n= 0 ==> 0, n = 3 ==> 2 */
 
-function fibonacci(n){
+function fibonacci(n) {
     if (n == 1 || n == 0) {
         return n;
-    } else 
-    return fibonacci(n-1)+fibonacci(n-2);
+    } else
+        return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 /* Optional 
@@ -64,19 +66,19 @@ Example:
 Input: n = 3, k = 3
 Output: ["123", "132", "213", "231", "312", "321"] */
 
-function permutations(n,k){
-   
-   
-    
-     
+function permutations(n, k) {
+
+
+
+
     //     let arr = [];
-        
+
     //     if(k==0 ){ return "";}
-        
+
     //     for (let i = 1; i <= n; i++) {
     //           arr.push(i);  
     //     }
-     
+
     // var check = [];
     // while(!(check.length==k)){
     //    let v =Math.floor((Math.random() * n) + 1);
@@ -85,15 +87,15 @@ function permutations(n,k){
     //     check.push(v);
     //   }
     // }
-    
+
     //   let result ="";
     //   for(let x=0 ;x<k; x++)
     //   {
     //     result = check[x]+result;
     //   }
     //   return result;
-    
-    
+
+
     let arr = [];
     for (var i = 1; i <= n; i++) {
         arr.push(i);
@@ -104,7 +106,7 @@ function permutations(n,k){
         mod = mod * i;
     }
     var result = "";
-    for(var i = 0; i < n; i++) {
+    for (var i = 0; i < n; i++) {
         mod = mod / (n - i);
         var x = k / mod;
         k = k % mod;
@@ -113,25 +115,25 @@ function permutations(n,k){
     }
 
     return arr;
-    
+
 };
 //my mind exploded
 
 
 describe("Test division", () => {
     test("Return the division result", () => {
-        expect(division(10,2)).toStrictEqual(5);
-        expect(division(10,0)).toStrictEqual(0);
-        expect(division(0,10)).toStrictEqual(0);
-        
+        expect(division(10, 2)).toStrictEqual(5);
+        expect(division(10, 0)).toStrictEqual(0);
+        expect(division(0, 10)).toStrictEqual(0);
+
     })
 });
 
 describe("Test pow", () => {
     test("It should work as Math.pow(x,n)", () => {
-        expect(pow(10,2)).toStrictEqual(100);
-        expect(pow(10,0)).toStrictEqual(1);
-        expect(pow(0,0)).toStrictEqual(1);
+        expect(pow(10, 2)).toStrictEqual(100);
+        expect(pow(10, 0)).toStrictEqual(1);
+        expect(pow(0, 0)).toStrictEqual(1);
     })
 });
 
@@ -147,7 +149,7 @@ describe("Test fibonacci", () => {
 
 describe("Test permutations", () => {
     test("It should return a list of possible combinations", () => {
-        expect(permutations(3,3)).toStrictEqual(["123", "132", "213", "231", "312", "321"]);
-        expect(permutations(3,0)).toStrictEqual([]);
+        expect(permutations(3, 3)).toStrictEqual(["123", "132", "213", "231", "312", "321"]);
+        expect(permutations(3, 0)).toStrictEqual([]);
     })
 });
